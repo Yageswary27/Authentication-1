@@ -20,7 +20,7 @@ const UserProfile: React.FC = () => {
     fetch('http://192.168.1.116:8000/api/v1/auth/me', {
       headers: {
         'X-api-key':
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2ZmOGQyN2NiZWE5NzA3YmIyNzEwYjYiLCJlbWFpbCI6InlhcmlAZ21haWwuY29tIiwiaXNfc3VwZXJ1c2VyIjpmYWxzZSwiZXhwIjoxNzQ0ODY1MDMwfQ.DpLWJhxuTxExQATgH0mkScovM5a3Zls-EuG4UdKNvxA',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2ZmOGQyN2NiZWE5NzA3YmIyNzEwYjYiLCJlbWFpbCI6InlhcmlAZ21haWwuY29tIiwiaXNfc3VwZXJ1c2VyIjpmYWxzZSwiZXhwIjoxNzQ0ODY2OTkyfQ.mdwhkiXGjgo05Z7Uh-hXAE9UAzGaSWkWSdimnn3T7po',
       },
     })
       .then((res) => {
@@ -52,12 +52,12 @@ const UserProfile: React.FC = () => {
       )}
 
       {/* Profile Header */}
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">User Profile</h2>
       <div className="flex flex-col items-center justify-center mb-6">
         <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 text-white flex items-center justify-center text-3xl font-bold shadow-lg">
           {userData?.first_name?.charAt(0)}
+          {userData?.last_name?.charAt(0)}
         </div>
-        <h2 className="text-2xl font-bold mt-3 text-gray-800">User Profile</h2>
-        <p className="text-sm text-gray-500">Personal Information</p>
       </div>
 
       {/* Info Section */}
@@ -89,13 +89,7 @@ const UserProfile: React.FC = () => {
               {new Date(userData.created_at).toLocaleString()}
             </span>
           </div>
-
-          <div className="flex justify-between pt-2">
-            <span className="font-medium">Updated At:</span>
-            <span className="text-right text-gray-600">
-              {new Date(userData.updated_at).toLocaleString()}
-            </span>
-            </div>
+          
         </div>
       )}
     </div>
