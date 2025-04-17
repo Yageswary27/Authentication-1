@@ -20,7 +20,7 @@ const UserProfile: React.FC = () => {
     fetch('http://192.168.1.116:8000/api/v1/auth/me', {
       headers: {
         'X-api-key':
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2ZmOGQyN2NiZWE5NzA3YmIyNzEwYjYiLCJlbWFpbCI6InlhcmlAZ21haWwuY29tIiwiaXNfc3VwZXJ1c2VyIjpmYWxzZSwiZXhwIjoxNzQ0ODAyOTI5fQ.0HP22SqL67obxrK8C6iJbkSPz6CQcE_v1xjlwIL2bJs',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2ZmOGQyN2NiZWE5NzA3YmIyNzEwYjYiLCJlbWFpbCI6InlhcmlAZ21haWwuY29tIiwiaXNfc3VwZXJ1c2VyIjpmYWxzZSwiZXhwIjoxNzQ0ODY1MDMwfQ.DpLWJhxuTxExQATgH0mkScovM5a3Zls-EuG4UdKNvxA',
       },
     })
       .then((res) => {
@@ -89,6 +89,13 @@ const UserProfile: React.FC = () => {
               {new Date(userData.created_at).toLocaleString()}
             </span>
           </div>
+
+          <div className="flex justify-between pt-2">
+            <span className="font-medium">Updated At:</span>
+            <span className="text-right text-gray-600">
+              {new Date(userData.updated_at).toLocaleString()}
+            </span>
+            </div>
         </div>
       )}
     </div>
