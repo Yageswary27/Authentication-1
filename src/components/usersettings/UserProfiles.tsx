@@ -20,7 +20,7 @@ const UserProfile: React.FC = () => {
     fetch('http://192.168.1.116:8000/api/v1/auth/me', {
       headers: {
         'X-api-key':
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2ZmOGQyN2NiZWE5NzA3YmIyNzEwYjYiLCJlbWFpbCI6InlhcmlAZ21haWwuY29tIiwiaXNfc3VwZXJ1c2VyIjpmYWxzZSwiZXhwIjoxNzQ0ODY2OTkyfQ.mdwhkiXGjgo05Z7Uh-hXAE9UAzGaSWkWSdimnn3T7po',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODAwZTQ2MTBhNzhlNTE4NWE2OGNkNzQiLCJlbWFpbCI6IndlZndlQGdtYWlsLmNvbSIsImlzX3N1cGVydXNlciI6ZmFsc2UsImV4cCI6MTc0NDg5MDczMn0.8lFyzLIJruAOFrVi0k3PABzAFM3tB6t6LXKr8e4VR60',
       },
     })
       .then((res) => {
@@ -43,7 +43,7 @@ const UserProfile: React.FC = () => {
   if (loading) return <div className="text-center text-gray-500 py-10">Loading...</div>;
 
   return (
-    <div className="relative p-6 max-w-xl mx-auto bg-white rounded-2xl shadow-2xl border border-gray-100 transition-all duration-300 hover:shadow-3xl">
+    <div className="relative mt-8 p-6 max-w-xl mx-auto bg-white rounded-2xl shadow-2xl border border-gray-100 transition-all duration-300 hover:shadow-3xl">
       {/* ✅ Active Badge */}
       {userData?.is_active && (
         <span className="absolute top-4 right-4 bg-green-200 text-green-800 text-xs font-bold px-3 py-1 rounded-full shadow">
