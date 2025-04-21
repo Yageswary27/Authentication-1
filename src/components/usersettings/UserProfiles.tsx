@@ -15,17 +15,21 @@ interface UserProfileData {
 const UserProfile: React.FC = () => {
   const [userData, setUserData] = useState<UserProfileData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
+  const fetchProfile = () => {
+    setLoading(true);
+    setError(null);
+
     fetch('http://192.168.1.116:8000/api/v1/auth/me', {
       headers: {
         'X-api-key':
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODAwZTQ2MTBhNzhlNTE4NWE2OGNkNzQiLCJlbWFpbCI6IndlZndlQGdtYWlsLmNvbSIsImlzX3N1cGVydXNlciI6ZmFsc2UsImV4cCI6MTc0NDg5MDczMn0.8lFyzLIJruAOFrVi0k3PABzAFM3tB6t6LXKr8e4VR60',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2ZmOGQyN2NiZWE5NzA3YmIyNzEwYjYiLCJlbWFpbCI6InlhcmlAZ21haWwuY29tIiwiaXNfc3VwZXJ1c2VyIjpmYWxzZSwiZXhwIjoxNzQ0OTc0ODEzfQ.eaN29gbFWktEWRldtxtBFYjLwYh_lOjcqakxwrbI7o0',
       },
     })
       .then((res) => {
         if (!res.ok) {
-          throw new Error('Failed to fetch user profile');
+          throw new Error(`Failed to fetch user profile: ${res.status}`);
         }
         return res.json();
       })
@@ -34,24 +38,43 @@ const UserProfile: React.FC = () => {
       })
       .catch((error) => {
         console.error('Error fetching profile:', error);
+        setError('Could not fetch profile. Please try again later.');
       })
       .finally(() => {
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchProfile();
   }, []);
 
-  if (loading) return <div className="text-center text-gray-500 py-10">Loading...</div>;
+  if (loading) {
+    return <div className="text-center text-gray-500 py-10">Loading...</div>;
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-10 text-red-600 space-y-4">
+        <p>{error}</p>
+        <button
+          onClick={fetchProfile}
+          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="relative mt-8 p-6 max-w-xl mx-auto bg-white rounded-2xl shadow-2xl border border-gray-100 transition-all duration-300 hover:shadow-3xl">
-      {/* ✅ Active Badge */}
       {userData?.is_active && (
         <span className="absolute top-4 right-4 bg-green-200 text-green-800 text-xs font-bold px-3 py-1 rounded-full shadow">
           ✅ Active
         </span>
       )}
 
-      {/* Profile Header */}
       <h2 className="text-2xl font-bold text-gray-800 mb-4">User Profile</h2>
       <div className="flex flex-col items-center justify-center mb-6">
         <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 text-white flex items-center justify-center text-3xl font-bold shadow-lg">
@@ -60,7 +83,6 @@ const UserProfile: React.FC = () => {
         </div>
       </div>
 
-      {/* Info Section */}
       {userData && (
         <div className="space-y-4 text-gray-700 text-base divide-y divide-gray-200">
           <div className="flex justify-between pt-2">
@@ -89,7 +111,6 @@ const UserProfile: React.FC = () => {
               {new Date(userData.created_at).toLocaleString()}
             </span>
           </div>
-          
         </div>
       )}
     </div>
