@@ -23,8 +23,7 @@ const UserProfile: React.FC = () => {
 
     fetch('http://192.168.1.116:8000/api/v1/auth/me', {
       headers: {
-        'X-api-key':
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2ZmOGQyN2NiZWE5NzA3YmIyNzEwYjYiLCJlbWFpbCI6InlhcmlAZ21haWwuY29tIiwiaXNfc3VwZXJ1c2VyIjpmYWxzZSwiZXhwIjoxNzQ0OTc0ODEzfQ.eaN29gbFWktEWRldtxtBFYjLwYh_lOjcqakxwrbI7o0',
+        'X-api-key': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2ZmOGQyN2NiZWE5NzA3YmIyNzEwYjYiLCJlbWFpbCI6InlhcmlAZ21haWwuY29tIiwiaXNfc3VwZXJ1c2VyIjpmYWxzZSwiZXhwIjoxNzQ1NDY2OTY3fQ.s2rpFKyJMGFfG8GuhDnDxS4oI6oj-27JAaU29x1qSdY',
       },
     })
       .then((res) => {
@@ -68,19 +67,23 @@ const UserProfile: React.FC = () => {
   }
 
   return (
-    <div className="relative mt-8 p-6 max-w-xl mx-auto bg-white rounded-2xl shadow-2xl border border-gray-100 transition-all duration-300 hover:shadow-3xl">
+    <div className="relative mt-8 p-8 w-full max-w-5xl min-h-[400px] mx-auto bg-white rounded-3xl shadow-2xl border border-gray-100 transition-all duration-300 hover:shadow-3xl">
       {userData?.is_active && (
         <span className="absolute top-4 right-4 bg-green-200 text-green-800 text-xs font-bold px-3 py-1 rounded-full shadow">
           ✅ Active
         </span>
       )}
 
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">User Profile</h2>
+      <h2 className="text-3xl font-bold text-blue-800 mb-6 text-center">User Profile</h2>
       <div className="flex flex-col items-center justify-center mb-6">
-        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 text-white flex items-center justify-center text-3xl font-bold shadow-lg">
+        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 text-white flex items-center justify-center text-4xl font-bold shadow-lg">
           {userData?.first_name?.charAt(0)}
           {userData?.last_name?.charAt(0)}
         </div>
+        <p className="mt-4 text-lg font-semibold text-gray-700">
+          {userData?.first_name} {userData?.last_name}
+        </p>
+      
       </div>
 
       {userData && (
@@ -92,12 +95,6 @@ const UserProfile: React.FC = () => {
           <div className="flex justify-between pt-2">
             <span className="font-medium">Email:</span>
             <span className="text-right text-gray-600">{userData.email}</span>
-          </div>
-          <div className="flex justify-between pt-2">
-            <span className="font-medium">Full Name:</span>
-            <span className="text-right text-gray-600">
-              {userData.first_name} {userData.last_name}
-            </span>
           </div>
           <div className="flex justify-between pt-2">
             <span className="font-medium">Website:</span>
