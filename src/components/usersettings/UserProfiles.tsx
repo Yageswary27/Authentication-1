@@ -23,7 +23,7 @@ const UserProfile: React.FC = () => {
 
     fetch('http://192.168.1.116:8000/api/v1/auth/me', {
       headers: {
-        'X-api-key': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2ZmOGQyN2NiZWE5NzA3YmIyNzEwYjYiLCJlbWFpbCI6InlhcmlAZ21haWwuY29tIiwiaXNfc3VwZXJ1c2VyIjpmYWxzZSwiZXhwIjoxNzQ1NDY2OTY3fQ.s2rpFKyJMGFfG8GuhDnDxS4oI6oj-27JAaU29x1qSdY',
+        'X-api-key': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2ZmOGQyN2NiZWE5NzA3YmIyNzEwYjYiLCJlbWFpbCI6InlhcmlAZ21haWwuY29tIiwiaXNfc3VwZXJ1c2VyIjpmYWxzZSwiZXhwIjoxNzQ1NDk1ODI4fQ.UxJpI1OQAewyTy9XKlPOVnuiaWY6iUyDkp8S6XvVZv8',
       },
     })
       .then((res) => {
