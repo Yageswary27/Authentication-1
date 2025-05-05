@@ -1,51 +1,70 @@
+// src/pages/CourseDetails.tsx
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { Course } from '../types/Course';
 
-const sampleCourses = [
-  { id: 1, title: 'Web Development', description: 'Learn HTML, CSS, JavaScript, and React. This course covers frontend and basic backend development with projects.', image: 'web-dev.jpg' },
-  { id: 2, title: 'Python for Data Science', description: 'Master data analysis with Python, including NumPy, Pandas, and data visualization with Matplotlib.', image: 'python.jpg' },
-  { id: 3, title: 'Java Programming', description: 'Understand Object-Oriented Programming with Java. Includes JDBC, Spring Boot, and real-time applications.', image: 'java.jpg' },
+const sampleCourses: Course[] = [
+  {
+    id: 1,
+    title: 'Web Development',
+    description: 'HTML, CSS, JavaScript, React',
+    imageUrl: 'https://via.placeholder.com/400x200?text=Web+Development',
+    duration: '3 months',
+    details: 'Full-stack basics and project-based learning.',
+    instructor: 'John Doe',
+    prerequisite: 'Basic computer knowledge',
+  },
+  {
+    id: 2,
+    title: 'Python for Data Science',
+    description: 'NumPy, Pandas, Matplotlib',
+    imageUrl: 'https://via.placeholder.com/400x200?text=Python+for+Data+Science',
+    duration: '2.5 months',
+    details: 'Data manipulation and visualization in Python.',
+    instructor: 'Jane Smith',
+    prerequisite: 'Python basics',
+  },
+  {
+    id: 3,
+    title: 'Java Programming',
+    description: 'OOP, JDBC, Spring Boot',
+    imageUrl: 'https://via.placeholder.com/400x200?text=Java+Programming',
+    duration: '4 months',
+    details: 'Java programming with Spring Boot & JDBC.',
+    instructor: 'Alex Johnson',
+    prerequisite: 'C or C++ knowledge preferred',
+  },
 ];
 
 const CourseDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-
-  const course = sampleCourses.find(c => c.id === parseInt(id || ''));
+  const course = sampleCourses.find((c) => c.id === parseInt(id || ''));
 
   if (!course) {
-    return <div className="p-6">Course not found.</div>;
+    return <div className="p-6 text-center text-red-500">Course not found.</div>;
   }
 
   return (
-    <div className="p-6 max-w-4xl mx-auto bg-white rounded-lg shadow-lg">
+    <div className="p-6 max-w-3xl mx-auto bg-white rounded-lg shadow-xl">
+      <img
+        src={course.imageUrl}
+        alt={course.title}
+        className="w-full h-64 object-cover rounded-lg mb-6"
+      />
+      <h2 className="text-4xl font-bold text-blue-700 mb-4">{course.title}</h2>
+      <p className="text-lg text-gray-700 mb-2">{course.description}</p>
+      <ul className="text-sm text-gray-600 mb-4">
+        <li><strong>Duration:</strong> {course.duration}</li>
+        <li><strong>Instructor:</strong> {course.instructor}</li>
+        <li><strong>Prerequisite:</strong> {course.prerequisite}</li>
+      </ul>
+      <p className="text-base text-gray-700 mb-6">{course.details}</p>
       <button
-        onClick={() => navigate('/courses')}
-        className="text-blue-500 mb-4 inline-flex items-center"
+        className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+        onClick={() => alert('Enrolled in the course!')}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7-7 7M5 5l7 7-7 7" />
-        </svg>
-        Back to Courses
+        Enroll Now
       </button>
-      <div className="flex flex-col md:flex-row items-center gap-6">
-        <div className="w-full md:w-1/2">
-          <img src={`../assets/${course.image}`} alt={course.title} className="w-full rounded-lg shadow-md" />
-        </div>
-        <div className="w-full md:w-1/2">
-          <h2 className="text-4xl font-bold mb-4 text-gray-800">{course.title}</h2>
-          <p className="text-lg text-gray-600 mb-4">{course.description}</p>
-          <div className="bg-gray-100 p-4 rounded-lg shadow-md mt-4">
-            <h3 className="text-xl font-semibold mb-2">Key Features:</h3>
-            <ul className="list-disc list-inside text-gray-700">
-              <li>Hands-on projects</li>
-              <li>Real-world applications</li>
-              <li>Expert instructors</li>
-              <li>Certificate of completion</li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
