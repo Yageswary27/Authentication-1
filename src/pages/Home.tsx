@@ -41,7 +41,7 @@ const Home: React.FC = () => {
         {/* Right Image */}
         <div className="flex-1 flex justify-center mt-10 md:mt-0">
           <img
-            src="/assets/src/home.avif.jpg"
+            src="src/banner jpg.avif"
             alt="IT Training"
             className="w-full max-w-md rounded-3xl shadow-2xl border-4 border-white/30 hover:shadow-xl transition duration-500"
           />

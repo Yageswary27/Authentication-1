@@ -8,7 +8,7 @@ const sampleCourses: Course[] = [
     id: 1,
     title: 'Web Development',
     description: 'HTML, CSS, JavaScript, React',
-    imageUrl: 'https://via.placeholder.com/400x200?text=Web+Development',
+    imageUrl: '/web.jpg', // ✅ no "src", no "public"
     duration: '3 months',
     details: 'Full-stack basics and project-based learning.',
     instructor: 'John Doe',
@@ -18,7 +18,7 @@ const sampleCourses: Course[] = [
     id: 2,
     title: 'Python for Data Science',
     description: 'NumPy, Pandas, Matplotlib',
-    imageUrl: 'https://via.placeholder.com/400x200?text=Python+for+Data+Science',
+    imageUrl: '/python.jpg', // ✅ correct path for public image
     duration: '2.5 months',
     details: 'Data manipulation and visualization in Python.',
     instructor: 'Jane Smith',
@@ -28,13 +28,14 @@ const sampleCourses: Course[] = [
     id: 3,
     title: 'Java Programming',
     description: 'OOP, JDBC, Spring Boot',
-    imageUrl: 'https://via.placeholder.com/400x200?text=Java+Programming',
+    imageUrl: '/java.webp', // ✅ correct
     duration: '4 months',
     details: 'Java programming with Spring Boot & JDBC.',
     instructor: 'Alex Johnson',
     prerequisite: 'C or C++ knowledge preferred',
   },
 ];
+
 
 const CourseDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
